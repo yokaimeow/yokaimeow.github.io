@@ -279,7 +279,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">1</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
 
   </li>
         
@@ -398,7 +398,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yokaimeow.github.io/2018/12/31/centossetstaticnetwork/">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.github.io/2018/12/31/nginxsethttps/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yokaimeow">
@@ -418,7 +418,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/31/centossetstaticnetwork/" class="post-title-link" itemprop="url">Centos 设置静态 IP 联网</a>
+                <a href="/2018/12/31/nginxsethttps/" class="post-title-link" itemprop="url">Nginx 配置 HTTPS</a>
               
             
           </h1>
@@ -443,7 +443,7 @@
                 
               
 
-              <time title="创建时间：2018-12-31 15:19:22 / 修改时间：15:24:10" itemprop="dateCreated datePublished" datetime="2018-12-31T15:19:22+08:00">2018-12-31</time>
+              <time title="创建时间：2018-12-31 15:32:59 / 修改时间：15:34:04" itemprop="dateCreated datePublished" datetime="2018-12-31T15:32:59+08:00">2018-12-31</time>
             
 
             
@@ -465,7 +465,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
 
                 
                 
@@ -501,21 +501,10 @@
       
         
           
-            <p>第一步，我们进入/etc/sysconfig/network-scripts目录，查看该目录有没有形如ifcfg-XXX的文件：</p>
-<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuebwtlr7uj30bk03bjrk.jpg" alt=""></p>
-<p>如果你看不到以ifcfg-打头的文件（ifcfg-lo除外），说明网卡设备没有被正确识别，可能是你下载的centos镜像版本和你安装centos时选择的centos版本不一致，比如，centos镜像是64位的，却按照32位来安装。（ 建议重装</p>
-<p>下面进行第二步：</p>
-<p>在VMware里，依次点击”编辑“ - ”虚拟网络编辑器“，如下图，我选择的是NAT模式：</p>
-<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec13cyqkj30gf0fhmy5.jpg" alt=""></p>
-<p>在这个界面接着点”NAT设置”，查看虚拟机的网关，这个网关在第三步要用。</p>
-<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec3zct94j30dq0emwf0.jpg" alt=""></p>
-<p>第三步：</p>
-<p>以root权限编辑/etc/sysconfig/network-scripts/ifcfg-ens33 #这边对应你自己的文件名</p>
-<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec765ieyj308y089glw.jpg" alt=""></p>
-<p>箭头指向的都修改位相应的模式</p>
-<p>下方属性为对应添加的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPADDR=192.168.152.127 #设置时查看虚拟网络编辑器VMnet8下的DHCP设置，从起始IP地址开始分配</span><br><span class="line">GATEWAY=192.168.152.2 #刚刚前面查看的NAT设置的网关地址</span><br><span class="line">NETMASK=255.255.255.0 #这是子网掩码</span><br><span class="line">DNS1=114.114.114.114 #给服务器设置一个DNS服务器，这个为公用的一个服务器</span><br></pre></td></tr></table></figure></p>
-<p>最后重启网络配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sevice network restart</span><br></pre></td></tr></table></figure></p>
-
+            <ul>
+<li>配置文件基本如下，请参考并进行相应的修改</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">    &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        server_name domain.example.com ;  #修改为自己的域名</span><br><span class="line">        rewrite ^(.*)`$  https://$`host$1 permanent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name domain.example.com;  #修改为自己的域名</span><br><span class="line">    ssl on;</span><br><span class="line">    root html;  #html修改为网站的对应路径</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    ssl_certificate   cert/yourcrt.pem;  #将证书添加到相应的文件夹</span><br><span class="line">    ssl_certificate_key  cert/yourkey.key;  #将密钥添加到相应的文件夹</span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root html;  #html修改为网站的对应路径</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -571,7 +560,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yokaimeow.github.io/2018/12/31/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.github.io/2018/12/31/centossetstaticnetwork/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yokaimeow">
@@ -591,7 +580,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/31/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+                <a href="/2018/12/31/centossetstaticnetwork/" class="post-title-link" itemprop="url">Centos 设置静态 IP 联网</a>
               
             
           </h1>
@@ -616,12 +605,34 @@
                 
               
 
-              <time title="创建时间：2018-12-31 14:13:41" itemprop="dateCreated datePublished" datetime="2018-12-31T14:13:41+08:00">2018-12-31</time>
+              <time title="创建时间：2018-12-31 15:19:22 / 修改时间：15:30:50" itemprop="dateCreated datePublished" datetime="2018-12-31T15:19:22+08:00">2018-12-31</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -652,15 +663,20 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>第一步，我们进入/etc/sysconfig/network-scripts目录，查看该目录有没有形如ifcfg-XXX的文件：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuebwtlr7uj30bk03bjrk.jpg" alt=""></p>
+<p>如果你看不到以ifcfg-打头的文件（ifcfg-lo除外），说明网卡设备没有被正确识别，可能是你下载的centos镜像版本和你安装centos时选择的centos版本不一致，比如，centos镜像是64位的，却按照32位来安装。（ 建议重装</p>
+<p>下面进行第二步：</p>
+<p>在VMware里，依次点击”编辑“ - ”虚拟网络编辑器“，如下图，我选择的是NAT模式：</p>
+<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec13cyqkj30gf0fhmy5.jpg" alt=""></p>
+<p>在这个界面接着点”NAT设置”，查看虚拟机的网关，这个网关在第三步要用。</p>
+<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec3zct94j30dq0emwf0.jpg" alt=""></p>
+<p>第三步：</p>
+<p>以root权限编辑/etc/sysconfig/network-scripts/ifcfg-ens33 #这边对应你自己的文件名</p>
+<p><img src="https://ws1.sinaimg.cn/large/0066sghagy1fuec765ieyj308y089glw.jpg" alt=""></p>
+<p>箭头指向的都修改位相应的模式</p>
+<p>下方属性为对应添加的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPADDR=192.168.152.127 #设置时查看虚拟网络编辑器VMnet8下的DHCP设置，从起始IP地址开始分配</span><br><span class="line">GATEWAY=192.168.152.2 #刚刚前面查看的NAT设置的网关地址</span><br><span class="line">NETMASK=255.255.255.0 #这是子网掩码</span><br><span class="line">DNS1=114.114.114.114 #给服务器设置一个DNS服务器，这个为公用的一个服务器</span><br></pre></td></tr></table></figure></p>
+<p>最后重启网络配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sevice network restart</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -777,7 +793,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
