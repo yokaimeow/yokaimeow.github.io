@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Centos 设置静态 IP 联网]]></title>
+    <url>%2F2018%2F12%2F31%2Fcentossetstaticnetwork%2F</url>
+    <content type="text"><![CDATA[第一步，我们进入/etc/sysconfig/network-scripts目录，查看该目录有没有形如ifcfg-XXX的文件： 如果你看不到以ifcfg-打头的文件（ifcfg-lo除外），说明网卡设备没有被正确识别，可能是你下载的centos镜像版本和你安装centos时选择的centos版本不一致，比如，centos镜像是64位的，却按照32位来安装。（ 建议重装 下面进行第二步： 在VMware里，依次点击”编辑“ - ”虚拟网络编辑器“，如下图，我选择的是NAT模式： 在这个界面接着点”NAT设置”，查看虚拟机的网关，这个网关在第三步要用。 第三步： 以root权限编辑/etc/sysconfig/network-scripts/ifcfg-ens33 #这边对应你自己的文件名 箭头指向的都修改位相应的模式 下方属性为对应添加的1234IPADDR=192.168.152.127 #设置时查看虚拟网络编辑器VMnet8下的DHCP设置，从起始IP地址开始分配GATEWAY=192.168.152.2 #刚刚前面查看的NAT设置的网关地址NETMASK=255.255.255.0 #这是子网掩码DNS1=114.114.114.114 #给服务器设置一个DNS服务器，这个为公用的一个服务器 最后重启网络配置1sevice network restart]]></content>
+      <categories>
+        <category>DevOps</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F12%2F31%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
