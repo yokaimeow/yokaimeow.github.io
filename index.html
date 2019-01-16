@@ -443,7 +443,7 @@
                 
               
 
-              <time title="创建时间：2019-01-16 17:37:11 / 修改时间：20:58:26" itemprop="dateCreated datePublished" datetime="2019-01-16T17:37:11+08:00">2019-01-16</time>
+              <time title="创建时间：2019-01-16 17:37:11 / 修改时间：21:01:42" itemprop="dateCreated datePublished" datetime="2019-01-16T17:37:11+08:00">2019-01-16</time>
             
 
             
@@ -528,20 +528,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 <p>访问URL</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:4000/</span><br></pre></td></tr></table></figure>
-<p><img src="" alt="1.png"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/hexo/1.png?raw=true" alt="1.png"></p>
 <p>好了，到这里你已经学会了通过<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>创建博客了，接下来我们将会分析如何将我们的博客上传到我们的GitHub服务器上</p>
 <h1 id="上传到GitHub"><a href="#上传到GitHub" class="headerlink" title="上传到GitHub"></a>上传到<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></h1><h2 id="GitHub创建repositories"><a href="#GitHub创建repositories" class="headerlink" title="GitHub创建repositories"></a><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>创建repositories</h2><p>进入<a href="https://github.com/" target="_blank" rel="noopener">GitHub官网</a>,或者在浏览器输入<code>https://github.com/</code>,如果还没有账号就创建一个账号就好了，这里不教大家怎么注册账号了。登录自己的账号，直接点击<code>new repositories</code>或者进入<code>You repositories</code>再<code>new repositories</code></p>
-<p><img src="" alt="2.png"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/hexo/2.png?raw=true" alt="2.png"></p>
 <p>进入到创建<code>repositories</code>页面来,这里很重要，一定要注意哦！必须将新建的<code>repository</code>的名字为: <strong>You account name</strong>.github.io。其他默认就好了</p>
-<p><img src="" alt="3.png"></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>GitHub的Repository创建好后。我们在回到本地的<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>的<code>Myblog</code>项目中,找到在项目的根目录下<strong>_config.yml</strong>找到 <strong>deploy</strong>标签</p>
-<p>在该文件下面添加</p>
-<ul>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/hexo/3.png?raw=true" alt="3.png"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
 <li><p>注：<code>repository: https://github.com/name/name.github.io.git</code> 是自己刚刚创建You account name.github.io 的repository，在<code>Clone with HTTPS</code>里面，复制粘贴就好咯。冒号后面记得空格哦。<code>branch</code> 后面是<code>master</code>就好了。</p>
-<p><img src="" alt="4.png"></p>
-<p><img src="" alt="5.png"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/hexo/4.png?raw=true" alt="4.png"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/hexo/5.png?raw=true" alt="5.png"></p>
 </li>
 </ul>
+<p>  GitHub的Repository创建好后。我们在回到本地的<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>的<code>Myblog</code>项目中,找到在项目的根目录下<strong>_config.yml</strong>找到 <strong>deploy</strong>标签</p>
+<p>  在该文件下面添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/name/name.github.io.git #复制过来</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>在<code>_config.yml</code>找到<code>url</code>进行修改为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://name.github.io #假设name是我的账号，修改为自己的账号</span><br></pre></td></tr></table></figure>
