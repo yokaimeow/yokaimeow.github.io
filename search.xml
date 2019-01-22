@@ -47,9 +47,9 @@
   <entry>
     <title><![CDATA[Welcome]]></title>
     <url>%2F2019%2F01%2F22%2Fbackgroudmusic%2F</url>
-    <content type="text"><![CDATA[任务清单： Blog JavaSE JDBC]]></content>
+    <content type="text"><![CDATA[Tips：只显示1000首歌曲，歌单中有版权音乐，有些歌曲无法播放。 任务清单： Blog JavaSE JDBC]]></content>
       <categories>
-        <category>运维</category>
+        <category>日程</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
