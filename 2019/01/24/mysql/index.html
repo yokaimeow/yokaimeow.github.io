@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.6.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MySQL">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL">
+<meta property="og:url" content="https://yokaimeow.com/2019/01/24/mysql/index.html">
+<meta property="og:site_name" content="yokaimeow&#39;s blog">
+<meta property="og:description" content="MySQL">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-24T16:10:47.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL">
+<meta name="twitter:description" content="MySQL">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yokaimeow.com/2019/01/24/mysql/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySQL | yokaimeow's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/yokaimeow" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yokaimeow's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">as fast as you can</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">13</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">6</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">11</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.com/2019/01/24/mysql/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yokaimeow">
+      <meta itemprop="description" content="blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yokaimeow's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 00:57:23" itemprop="dateCreated datePublished" datetime="2019-01-24T00:57:23+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-25 00:10:47" itemprop="dateModified" datetime="2019-01-25T00:10:47+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a><center>MySQL</center></h2><a id="more"></a>
+<h3 id="完成对MYSQL数据库中数据库，表及数据的CURD操作"><a href="#完成对MYSQL数据库中数据库，表及数据的CURD操作" class="headerlink" title="完成对MYSQL数据库中数据库，表及数据的CURD操作"></a>完成对MYSQL数据库中数据库，表及数据的CURD操作</h3><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><h3 id="掌握MYSQL的基本数据库，表及表中记录的操作"><a href="#掌握MYSQL的基本数据库，表及表中记录的操作" class="headerlink" title="掌握MYSQL的基本数据库，表及表中记录的操作"></a>掌握MYSQL的基本数据库，表及表中记录的操作</h3><h2 id="1-完成对分类表的CURD的操作"><a href="#1-完成对分类表的CURD的操作" class="headerlink" title="1.完成对分类表的CURD的操作"></a>1.完成对分类表的CURD的操作</h2><h3 id="需求分析："><a href="#需求分析：" class="headerlink" title="需求分析："></a>需求分析：</h3><p>使用CMD命令来创建一个数据库，并对数据库中的一张分类表进行增删改查操作；</p>
+<h3 id="数据库概述："><a href="#数据库概述：" class="headerlink" title="数据库概述："></a>数据库概述：</h3><ul>
+<li>什么是数据库：<ul>
+<li>数据库就是一个文件系统，只不过我们需要通过命令(SQL)来操作这个文件系统</li>
+<li>数据库(Database)是按照数据结构来组织、存储和管理数据的建立在计算机存储设备上的仓库。</li>
+<li>数据库是长期存储在计算机内、有组织、可共享的数据集合。数据库中的数据指的是以一定的数据模型组织、描述和存储在一起、具有尽可能小的冗余度、较高的数据独立性和易拓展性的特点并可在一定范围内为多个用户共享。</li>
+</ul>
+</li>
+<li>数据库的作用：<ul>
+<li>储存数据，数据的仓库，带有访问权限限制不同人可以有不同的操作</li>
+</ul>
+</li>
+<li>为什么要学习数据库：<ul>
+<li>能持久化的存储数据，对数据的规模和类型有更好的管理。</li>
+<li>操作的都是后台数据，取到后台数据进行封装，然后交给前端去展现</li>
+</ul>
+</li>
+</ul>
+<h3 id="常见的数据库："><a href="#常见的数据库：" class="headerlink" title="常见的数据库："></a>常见的数据库：</h3><p>mysql：开源免费的适用于中小型企业的免费数据库，sun公司收购了mysql，sun公司被oracle收购了，oracle收购之后，开始收费了</p>
+<p>mariadb：由mysql创始人开发，是mysql开源版本的一个分支，基本上所有的命令与原来一致</p>
+<p>oracle：甲骨文公司，商业软件，收费软件，适用于大型电商网站，收购lsun公司</p>
+<p>db2：IBM公司，解决方案：软件和硬件，服务器架构，银行系统大多采用db2</p>
+<p>sqlserver：windows里面，政府网站asp.net，并且大学教学通常都是采用SQLserver，图形化工具。</p>
+<h3 id="NOSQL非关系型数据库：-key-value"><a href="#NOSQL非关系型数据库：-key-value" class="headerlink" title="NOSQL非关系型数据库： key:value"></a>NOSQL非关系型数据库： key:value</h3><p>mongodb</p>
+<p>redis</p>
+<h3 id="关系型数据库："><a href="#关系型数据库：" class="headerlink" title="关系型数据库："></a>关系型数据库：</h3><p>主要是用来描述实体与实体之间的关系，</p>
+<p>实实在在的事物：男生和女生 学生和班级 员工和部门</p>
+<p>E-R关系图：要求必须掌握</p>
+<p>实体：方框</p>
+<p>属性：椭圆</p>
+<p>关系：菱形</p>
+<h3 id="MYSQL数据库服务器"><a href="#MYSQL数据库服务器" class="headerlink" title="MYSQL数据库服务器"></a>MYSQL数据库服务器</h3><p>MYSQL数据库：数据库管理软件</p>
+<p>服务器：就是一台电脑，这台电脑安装相关的服务器软件，这些软件会监听不同的端口号，根据用户访问的端口号，提供不同的服务</p>
+<h3 id="MYSQL的SQL语句"><a href="#MYSQL的SQL语句" class="headerlink" title="MYSQL的SQL语句"></a>MYSQL的SQL语句</h3><p>SQL：Structure Query Language 结构化查询语言</p>
+<p>DDL：数据定义语言：定义数据库，数据表它们的结构：</p>
+<ul>
+<li>create</li>
+<li>drop</li>
+<li>alter</li>
+</ul>
+<p>DML：数据操纵语言：主要是用来操作数据</p>
+<ul>
+<li>insert</li>
+<li>update</li>
+<li>delete</li>
+</ul>
+<p>DCL：数据控制语言：定义访问权限，取消访问权限，安全设置</p>
+<ul>
+<li>grant</li>
+</ul>
+<p>DQL：数据查询语言：</p>
+<ul>
+<li>select</li>
+<li>from</li>
+<li>where</li>
+</ul>
+<h3 id="数据库的CURD的操作"><a href="#数据库的CURD的操作" class="headerlink" title="数据库的CURD的操作"></a>数据库的CURD的操作</h3><ul>
+<li>首先要登录数据库服务器</li>
+</ul>
+<h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库的名字;</span><br><span class="line">create database test;</span><br><span class="line"></span><br><span class="line">-- 创建数据库的时候，指定字符集</span><br><span class="line">create database 数据库的名字 character set 字符集;</span><br><span class="line">create database test character set utf8;</span><br><span class="line"></span><br><span class="line">create database 数据库的名字 character set 字符集 collate 校对规则;</span><br><span class="line">create database test character set utf8 collate utf8_bin;</span><br></pre></td></tr></table></figure>
+<h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 查看数据库定义的语句</span><br><span class="line">show create database 数据库名字;</span><br><span class="line">show create database test;</span><br><span class="line"></span><br><span class="line">-- 查看所有数据库</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据库的操作"><a href="#修改数据库的操作" class="headerlink" title="修改数据库的操作"></a>修改数据库的操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 修改数据库的字符集</span><br><span class="line">alter database 数据库的名字 character set 字符集;</span><br><span class="line">alter database test character set gbk;</span><br></pre></td></tr></table></figure>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">drop database 数据库名字;</span><br><span class="line">drop database test;</span><br></pre></td></tr></table></figure>
+<h4 id="其他数据库操作命令"><a href="#其他数据库操作命令" class="headerlink" title="其他数据库操作命令"></a>其他数据库操作命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 切换数据库(选中数据库)</span><br><span class="line">use 数据库名字;</span><br><span class="line">use test;</span><br><span class="line"></span><br><span class="line">-- 查看当前正在使用的数据库</span><br><span class="line">select database();</span><br></pre></td></tr></table></figure>
+<h3 id="表的CRUD操作"><a href="#表的CRUD操作" class="headerlink" title="表的CRUD操作"></a>表的CRUD操作</h3><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库的名字;</span><br><span class="line"></span><br><span class="line">create table 表名(</span><br><span class="line">  列名 列的类型 约束,</span><br><span class="line">  列名2 列的类型 约束</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">列的类型;</span><br><span class="line">java            sql</span><br><span class="line">int             int</span><br><span class="line">char/string     char/varchar</span><br><span class="line">                char：固定长度</span><br><span class="line">                varchar：可变长度</span><br><span class="line">                长度代表的是字符的个数</span><br><span class="line">double          double</span><br><span class="line">float           float</span><br><span class="line">boolean         boolean</span><br><span class="line">date            date： YYYY-MM-DD</span><br><span class="line">                datetime：YYYY-MM-DD hh:mm:ss 默认值是null</span><br><span class="line">                timestamp：YYYY-MM-DD hh:mm:ss 默认使用当前时间</span><br><span class="line">                </span><br><span class="line">                text：主要用来存放文本</span><br><span class="line">                blob：存放的是二进制</span><br><span class="line">                </span><br><span class="line">列的约束：</span><br><span class="line">主键约束：primary key</span><br><span class="line">唯一约束：unique</span><br><span class="line">非空约束：not null</span><br><span class="line"></span><br><span class="line">创建表：</span><br><span class="line">1.分析实体：学生</span><br><span class="line">2.学生ID</span><br><span class="line">3.姓名</span><br><span class="line">4.性别</span><br><span class="line">5.年龄</span><br><span class="line"></span><br><span class="line">create table student(</span><br><span class="line">  sid int primary key,</span><br><span class="line">  sname varchar(31),</span><br><span class="line">  sex int,</span><br><span class="line">  age int</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h4 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 查看所有的表</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">-- 查看表的创建过程</span><br><span class="line">show create table student;</span><br><span class="line"></span><br><span class="line">-- 查看表的结构</span><br><span class="line">desc student;</span><br></pre></td></tr></table></figure>
+<h4 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h4><p>添加列(add)，修改列(modify)，修改列名(change)，删除列(drop)，修改表名(rename)，修改表的字符集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- 添加列(add)</span><br><span class="line">alter table 表名 add 列名 列的类型 列的约束</span><br><span class="line">alter table student add score int not null;</span><br><span class="line"></span><br><span class="line">-- 修改列(modify)</span><br><span class="line">alter table student modify sex varchar(2);</span><br><span class="line"></span><br><span class="line">-- 修改列名(change)</span><br><span class="line">alter table student change sex gender varchar(2);</span><br><span class="line"></span><br><span class="line">-- 下面两种比较少用</span><br><span class="line"></span><br><span class="line">-- 修改表名(rename)</span><br><span class="line">rename table student to s;</span><br><span class="line"></span><br><span class="line">-- 修改表的字符集</span><br><span class="line">alter table s character set gbk;</span><br></pre></td></tr></table></figure>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table s;</span><br></pre></td></tr></table></figure>
+<h3 id="Sql完成对表中数据的CRUD操作"><a href="#Sql完成对表中数据的CRUD操作" class="headerlink" title="Sql完成对表中数据的CRUD操作"></a>Sql完成对表中数据的CRUD操作</h3><h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(列名1,列名2,列名3) values(值1,值2,值3);</span><br><span class="line">insert into student(sid,sname,sex,age)valuse(1,&apos;zhangsan&apos;,1,23);</span><br><span class="line"></span><br><span class="line">-- 简单写法</span><br><span class="line">insert into student values(2,&apos;zhangsan&apos;,1,23);</span><br><span class="line"></span><br><span class="line">-- 注意：如果是插入部分的话，列名不能省略</span><br><span class="line">insert into student(sid,sname)values(3,&apos;lisi&apos;);</span><br><span class="line">insert into student values(3,&apos;lisi&apos;); //这种写法错误</span><br><span class="line"></span><br><span class="line">-- 批量插入</span><br><span class="line">insert into student values</span><br><span class="line">(4,&apos;zhangsan&apos;,1,23),</span><br><span class="line">(5,&apos;zhangsan&apos;,1,23),</span><br><span class="line">(6,&apos;zhangsan&apos;,1,23),</span><br><span class="line">(7,&apos;zhangsan&apos;,1,23),</span><br><span class="line">(8,&apos;zhangsan&apos;,1,23);</span><br><span class="line"></span><br><span class="line">-- 单条插入和批量插入的效率</span><br><span class="line">批量插入效率高，设计关键字少</span><br><span class="line">但是批量插入一条出错，全部都会受到影响。</span><br><span class="line"></span><br><span class="line">-- 查看表中数据</span><br><span class="line">select * from student;</span><br></pre></td></tr></table></figure>
+<h4 id="命令行下插入中文的问题：insert-into-student-values-11-’李四’-1-24"><a href="#命令行下插入中文的问题：insert-into-student-values-11-’李四’-1-24" class="headerlink" title="命令行下插入中文的问题：insert into student values(11,’李四’,1,24);"></a>命令行下插入中文的问题：insert into student values(11,’李四’,1,24);</h4><ul>
+<li><p>临时解决方案：set name gbk; 相当于是告诉mysql服务器软件，我们当前在命令行下输入的内容是GBK编码，当命令窗口关闭之后，它再输入中文就会存在问题</p>
+</li>
+<li><p>永久解决办法：修改my.ini配置(在mysql软件的安装路径里)</p>
+<ul>
+<li>暂停mysql的服务</li>
+<li>在mysql安装路径中找到my.ini配置文件</li>
+<li>将57(具体版本自行寻找)行的编码改成gbk</li>
+<li>保存文件退出</li>
+<li>启动mysql服务</li>
+</ul>
+<h4 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 [where 条件]</span><br><span class="line"></span><br><span class="line">delete from student where sid=10;</span><br><span class="line">delete from student; //如果没有指定条件，会将表中数据一条一条的全部删除掉</span><br><span class="line"></span><br><span class="line">-- 面试问题：请说一下 delete 删除数据和 truncate 删除数据有什么区别</span><br><span class="line">delete：DML 一条一条删除表中数据</span><br><span class="line">truncate：DDL 先删除表再重建表</span><br><span class="line">关于哪条执行效率高：具体看表中的数据量</span><br><span class="line">如果数据比较少，delete比较高效</span><br><span class="line">如果是数据比较多，truncate比较高效</span><br></pre></td></tr></table></figure>
+<h4 id="更新表记录"><a href="#更新表记录" class="headerlink" title="更新表记录"></a>更新表记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名=列的值,列名2=列的值2 [where 条件]</span><br><span class="line"></span><br><span class="line">-- 将sid为5的名字改成李四</span><br><span class="line">-- 如果参数是字符串，日期要加上单引号</span><br><span class="line">update student set sname=&apos;李四&apos; where sid=5;</span><br><span class="line"></span><br><span class="line">update student set sname=&apos;李四&apos;,sex=0; //全部改为</span><br></pre></td></tr></table></figure>
+<h4 id="查询记录"><a href="#查询记录" class="headerlink" title="查询记录"></a>查询记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line">select [distinct] [ * ] [列名,列名2] from 表名 [where 条件]</span><br><span class="line">distinct：去除重复的数据</span><br><span class="line">select：选择显示那些列的内容</span><br><span class="line"></span><br><span class="line">-- 商品分类：手机数码，鞋靴箱包</span><br><span class="line">1.分类的ID</span><br><span class="line">2。分类的名称</span><br><span class="line">3.分类的描述</span><br><span class="line"></span><br><span class="line">create table category(</span><br><span class="line">  cid int primaty key auto_increment,</span><br><span class="line">  cname varchar(10),</span><br><span class="line">  cdesc varchar(31)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into category values(null,&apos;手机数码&apos;,&apos;电子产品&apos;);</span><br><span class="line">insert into category values(null,&apos;鞋靴箱包&apos;,&apos;江南皮革厂打造&apos;);</span><br><span class="line">insert into category values(null,&apos;香烟酒水&apos;,&apos;中华,茅台,二锅头&apos;);</span><br><span class="line">insert into category values(null,&apos;酸奶饼干&apos;,&apos;哇哈哈,蒙牛酸酸乳&apos;);</span><br><span class="line">insert into category values(null,&apos;馋嘴零食&apos;,&apos;瓜子花生,八宝粥,辣条&apos;);</span><br><span class="line"></span><br><span class="line">select * from category;</span><br><span class="line">select canme,cdesc from category;</span><br><span class="line"></span><br><span class="line">-- 所有商品</span><br><span class="line">1.商品的ID</span><br><span class="line">2.商品的名称</span><br><span class="line">3.商品的价格</span><br><span class="line">4.生产日期</span><br><span class="line">5.商品分类ID</span><br><span class="line"></span><br><span class="line">商品和商品的分类：所属关系</span><br><span class="line">create table product(</span><br><span class="line">  pid int primary key auto_increment,</span><br><span class="line">  pname varchar(10),</span><br><span class="line">  price double,</span><br><span class="line">  pdate timestamp,</span><br><span class="line">  cno int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into product values(null,&apos;小米mix4&apos;,998,null,1);</span><br><span class="line">insert into product values(null,&apos;锤子&apos;,2888,null,1);</span><br><span class="line">insert into product values(null,&apos;阿迪王&apos;,99,null,2);</span><br><span class="line">insert into product values(null,&apos;老村长&apos;,88,null,3);</span><br><span class="line">insert into product values(null,&apos;劲酒&apos;,35,null,3);</span><br><span class="line">insert into product values(null,&apos;小熊饼干&apos;,1,null,4);</span><br><span class="line">insert into product values(null,&apos;卫龙辣条&apos;,1,null,5);</span><br><span class="line">insert into product values(null,&apos;旺旺大饼&apos;,1,null,5);</span><br><span class="line"></span><br><span class="line">-- 简单查询</span><br><span class="line">-- 查询所有的商品</span><br><span class="line">select * from product;</span><br><span class="line"></span><br><span class="line">-- 查询商品名称和商品价格</span><br><span class="line">select panme,price from product;</span><br><span class="line"></span><br><span class="line">-- 别名查询，as的关键字，as关键字可以省略</span><br><span class="line">-- 表别名：select p.pname, p.price from product p;(主要用于多表查询)</span><br><span class="line">select p.pname,p.price from product as p;</span><br><span class="line"></span><br><span class="line">-- 列别名：select pname as 商品名称,price as 商品价格 from product;</span><br><span class="line">省略as关键字</span><br><span class="line">select pname 商品名称,price 商品价格 from product;</span><br><span class="line"></span><br><span class="line">-- 去掉重复的值</span><br><span class="line">-- 查询商品所有的价格</span><br><span class="line">select price from product;</span><br><span class="line">select distinct price from product;</span><br><span class="line"></span><br><span class="line">-- select运算查询：仅仅在查询结果上做运算 + - * /</span><br><span class="line">select *,price*1.5 from product;</span><br><span class="line">select *,price*1.5 as 折后价 from product;</span><br><span class="line"></span><br><span class="line">-- 条件查询[where关键字]</span><br><span class="line">指定条件，去顶要操作的记录</span><br><span class="line"></span><br><span class="line">-- 查询商品价格&gt;60元的所有商品信息</span><br><span class="line">select * from product where price &gt; 60;</span><br><span class="line"></span><br><span class="line">-- where后的条件写法</span><br><span class="line">-- 关系运算符：&gt; &gt;= &lt; &lt;= = != &lt;&gt;</span><br><span class="line">&lt;&gt;：不等于：标准SQL写法</span><br><span class="line">!=：不等于：非标准SQL写法</span><br><span class="line"></span><br><span class="line">-- 查询商品价格不等于88的所有商品</span><br><span class="line">select * from product where price &lt;&gt; 88;</span><br><span class="line">select * from product where price != 88;</span><br><span class="line"></span><br><span class="line">-- 查询商品价格在10到100之间</span><br><span class="line">select * from product where price &gt; 10 and peice &lt; 100;</span><br><span class="line"></span><br><span class="line">between ...and...</span><br><span class="line"></span><br><span class="line">select * from product where price between 10 and 100;</span><br><span class="line"></span><br><span class="line">-- 逻辑运算：and，or，not</span><br><span class="line"></span><br><span class="line">-- 查询出商品价格，小于35或者商品价格大于900</span><br><span class="line">select * from product where price &lt; 35 or price &gt; 900;</span><br><span class="line"></span><br><span class="line">-- like：模糊查询</span><br><span class="line">_：代表的是一个字符</span><br><span class="line">%：代表的是多个字符</span><br><span class="line"></span><br><span class="line">-- 查询出名字中带有饼的所有商品 &apos;%饼%&apos;</span><br><span class="line">select * from product where pname like &apos;%饼%&apos;;</span><br><span class="line"></span><br><span class="line">-- 查询第二个名字中是熊的所有商品</span><br><span class="line">select * from product where pname like &apos;_熊%&apos;；</span><br><span class="line"></span><br><span class="line">-- in在某个范围中获得值</span><br><span class="line"></span><br><span class="line">-- 查询出商品分类ID在 1，4，5里面的所有商品</span><br><span class="line">select * from product where cno in (1,4,5);</span><br><span class="line"></span><br><span class="line">-- 排序查询：order by 关键字</span><br><span class="line">asc：ascend 升序</span><br><span class="line">desc：descend 降序</span><br><span class="line"></span><br><span class="line">-- 0.查询所有商品，按价格进行排序</span><br><span class="line">select * from product order by price;</span><br><span class="line"></span><br><span class="line">-- 1.查询所有的商品，按价格进行降序排序(asc-升序 desc-降序);</span><br><span class="line">select * from peoduct order by price desc;</span><br><span class="line"></span><br><span class="line">-- 2.查询名称有 老 的商品，安价格降序排序</span><br><span class="line">1.查询名称有 小 的商品</span><br><span class="line">select * from product where pname like &apos;%小%&apos;;</span><br><span class="line">2.进行排序得出结果</span><br><span class="line">select * from product where pname like &apos;%小%&apos; order by price asc;</span><br><span class="line"></span><br><span class="line">--聚合函数：</span><br><span class="line">sum()：求和</span><br><span class="line">avg()：求平均值</span><br><span class="line">count()：统计数量</span><br><span class="line">max()：最大值</span><br><span class="line">min()：最小值</span><br><span class="line"></span><br><span class="line">-- 1.获得所有商品价格的总和：</span><br><span class="line">select sum(price) from product;</span><br><span class="line"></span><br><span class="line">-- 2.获得所有商品的平均价格：</span><br><span class="line">select avg(price) from product;</span><br><span class="line"></span><br><span class="line">-- 3.获得所有商品的个数：</span><br><span class="line">select count(*) from product;</span><br><span class="line"></span><br><span class="line">-- 注意:where 条件后面不能加聚合函数</span><br><span class="line"></span><br><span class="line">-- 查出商品价格大于平均价格的所有商品</span><br><span class="line">查出所有的商品</span><br><span class="line">select * from product;</span><br><span class="line">大于</span><br><span class="line">平均价格</span><br><span class="line">select avg(price) from product;</span><br><span class="line">-- 子查询</span><br><span class="line">select * from product where price &gt; (select avg(price) from product);</span><br><span class="line"></span><br><span class="line">-- 分组：group by</span><br><span class="line"></span><br><span class="line">-- 1.根据cno字段分组，分组后统计商品个数</span><br><span class="line">select cno,count(*) from product group by cno;</span><br><span class="line"></span><br><span class="line">-- 2.根据cno分组，分组统计每组商品的平均价格 并且商品平均价格 &gt; 60</span><br><span class="line">select cno,avg(price) from product group by cno having avg(price) &gt; 60;</span><br><span class="line"></span><br><span class="line">-- having 关键字 可以接聚合函数 出现在分组之后</span><br><span class="line">-- where 关键字 它是不可以接聚合函数 出现在分组之前</span><br><span class="line"></span><br><span class="line">-- 编写顺序</span><br><span class="line">-- S..F..W..G..H..O</span><br><span class="line">select .. from .. where .. group by .. having .. order by</span><br><span class="line"></span><br><span class="line">-- 执行顺序</span><br><span class="line">F..W..G..H..S..O</span><br><span class="line">from .. where .. group by .. having .. select .. order by</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="yokaimeow 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="yokaimeow 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/jdbc/" rel="next" title="JDBC">
+                <i class="fa fa-chevron-left"></i> JDBC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="yokaimeow">
+            
+              <p class="site-author-name" itemprop="name">yokaimeow</p>
+              <p class="site-description motion-element" itemprop="description">blog</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yokaimeow" title="GitHub &rarr; https://github.com/yokaimeow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yokaimeow@gmail.com" title="E-Mail &rarr; mailto:yokaimeow@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/6917102439" title="Weibo &rarr; https://weibo.com/u/6917102439" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yokaimeow" title="Twitter &rarr; https://twitter.com/yokaimeow" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cxthhhhh.com/" title="https://www.cxthhhhh.com/" rel="noopener" target="_blank">CXT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://docupa.cn/" title="https://docupa.cn/" rel="noopener" target="_blank">Docupa</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hongxuelin.com/" title="https://www.hongxuelin.com/" rel="noopener" target="_blank">Hongxuelin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://htroy.com/" title="https://htroy.com/" rel="noopener" target="_blank">Htroy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.melodyss.com/" title="http://www.melodyss.com/" rel="noopener" target="_blank">Melody</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.saltedfish-qhc.top/" title="http://www.saltedfish-qhc.top/" rel="noopener" target="_blank">QHC</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cjbase.cn/" title="https://www.cjbase.cn/" rel="noopener" target="_blank">Sagit</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yanyuefan.github.io/" title="https://yanyuefan.github.io/" rel="noopener" target="_blank">Yanyuefan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zhakul.top/" title="https://zhakul.top/" rel="noopener" target="_blank">Zhakul</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+		  
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">1.</span> <span class="nav-text">MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完成对MYSQL数据库中数据库，表及数据的CURD操作"><span class="nav-number">1.1.</span> <span class="nav-text">完成对MYSQL数据库中数据库，表及数据的CURD操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#掌握MYSQL的基本数据库，表及表中记录的操作"><span class="nav-number">2.1.</span> <span class="nav-text">掌握MYSQL的基本数据库，表及表中记录的操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-完成对分类表的CURD的操作"><span class="nav-number">3.</span> <span class="nav-text">1.完成对分类表的CURD的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析："><span class="nav-number">3.1.</span> <span class="nav-text">需求分析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库概述："><span class="nav-number">3.2.</span> <span class="nav-text">数据库概述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的数据库："><span class="nav-number">3.3.</span> <span class="nav-text">常见的数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOSQL非关系型数据库：-key-value"><span class="nav-number">3.4.</span> <span class="nav-text">NOSQL非关系型数据库： key:value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系型数据库："><span class="nav-number">3.5.</span> <span class="nav-text">关系型数据库：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MYSQL数据库服务器"><span class="nav-number">3.6.</span> <span class="nav-text">MYSQL数据库服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MYSQL的SQL语句"><span class="nav-number">3.7.</span> <span class="nav-text">MYSQL的SQL语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的CURD的操作"><span class="nav-number">3.8.</span> <span class="nav-text">数据库的CURD的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据库"><span class="nav-number">3.8.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看数据库"><span class="nav-number">3.8.2.</span> <span class="nav-text">查看数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据库的操作"><span class="nav-number">3.8.3.</span> <span class="nav-text">修改数据库的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除数据库"><span class="nav-number">3.8.4.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他数据库操作命令"><span class="nav-number">3.8.5.</span> <span class="nav-text">其他数据库操作命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表的CRUD操作"><span class="nav-number">3.9.</span> <span class="nav-text">表的CRUD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表"><span class="nav-number">3.9.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看表"><span class="nav-number">3.9.2.</span> <span class="nav-text">查看表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改表"><span class="nav-number">3.9.3.</span> <span class="nav-text">修改表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除表"><span class="nav-number">3.9.4.</span> <span class="nav-text">删除表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sql完成对表中数据的CRUD操作"><span class="nav-number">3.10.</span> <span class="nav-text">Sql完成对表中数据的CRUD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入数据"><span class="nav-number">3.10.1.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令行下插入中文的问题：insert-into-student-values-11-’李四’-1-24"><span class="nav-number">3.10.2.</span> <span class="nav-text">命令行下插入中文的问题：insert into student values(11,’李四’,1,24);</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除记录"><span class="nav-number">3.10.3.</span> <span class="nav-text">删除记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新表记录"><span class="nav-number">3.10.4.</span> <span class="nav-text">更新表记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询记录"><span class="nav-number">3.10.5.</span> <span class="nav-text">查询记录</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yokaimeow</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.6.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.6.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
