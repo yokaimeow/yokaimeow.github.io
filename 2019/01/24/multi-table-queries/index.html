@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.6.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多表查询">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多表查询">
+<meta property="og:url" content="https://yokaimeow.com/2019/01/24/multi-table-queries/index.html">
+<meta property="og:site_name" content="yokaimeow&#39;s blog">
+<meta property="og:description" content="多表查询">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-29T14:02:16.077Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多表查询">
+<meta name="twitter:description" content="多表查询">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yokaimeow.com/2019/01/24/multi-table-queries/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>多表查询 | yokaimeow's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/yokaimeow" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yokaimeow's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">as fast as you can</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">13</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">6</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">12</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.com/2019/01/24/multi-table-queries/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yokaimeow">
+      <meta itemprop="description" content="blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yokaimeow's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">多表查询
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 00:31:34" itemprop="dateCreated datePublished" datetime="2019-01-24T00:31:34+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-29 22:02:16" itemprop="dateModified" datetime="2019-01-29T22:02:16+08:00">2019-01-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a><center>多表查询</center></h2><a id="more"></a>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><h4 id="完成对MYSQL数据库的多表查询及建表的操作"><a href="#完成对MYSQL数据库的多表查询及建表的操作" class="headerlink" title="完成对MYSQL数据库的多表查询及建表的操作"></a>完成对MYSQL数据库的多表查询及建表的操作</h4><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><h4 id="掌握MYSQL中多表的创建及多表的查询"><a href="#掌握MYSQL中多表的创建及多表的查询" class="headerlink" title="掌握MYSQL中多表的创建及多表的查询"></a>掌握MYSQL中多表的创建及多表的查询</h4><h4 id="掌握MYSQL中的表关系分析并能正确建表"><a href="#掌握MYSQL中的表关系分析并能正确建表" class="headerlink" title="掌握MYSQL中的表关系分析并能正确建表"></a>掌握MYSQL中的表关系分析并能正确建表</h4><p>内容回顾:</p>
+<p>​    数据库的创建 : create database 数据库的名 character set 字符集  collate 校对规则</p>
+<p>​    数据库的删除: drop database 数据库名</p>
+<p>​    修改: alter database 数据库 character set 字符集(utf8)</p>
+<p>​    查询:  show databases;</p>
+<p>​          show create database 数据库的名字</p>
+<p>​          select database();</p>
+<p>​    切换数据库 :</p>
+<p>​            use 数据库的名字</p>
+<p>​    </p>
+<p>​    表结构的操作:</p>
+<p>​        创建:  create table 表名(    </p>
+<p>​                列名 列的类型  列的约束,</p>
+<p>​                列名 列的类型  列的约</p>
+<p>​            )</p>
+<p>​            列的类型: char / varchar   </p>
+<p>​            列的约束: </p>
+<p>​                    primary key 主键约束</p>
+<p>​                    unique : 唯一约束</p>
+<p>​                    not null 非空约束</p>
+<p>​              自动增长 : auto_increment</p>
+<p>​         删除 :  drop table 表名</p>
+<p>​        修改:   alter table 表名 (add, modify, change , drop)</p>
+<p>​            rename table 旧表名  to 新表名</p>
+<p>​            alter table 表名 character set 字符集</p>
+<p>​       查询表结构:</p>
+<p>​            show tables; 查询出所有的表</p>
+<p>​            show create table 表名: 表的创建语句, 表的定义</p>
+<p>​            desc 表名:　表的结构</p>
+<p>​    表中数据的操作</p>
+<p>​        插入：　 insert into 表名(列名,列名) values(值1,值2);</p>
+<p>​        删除:        delete from 表名 [where 条件]</p>
+<p>​        修改:        update 表名 set 列名=’值’ ,列名=’值’ [where 条件];</p>
+<p>​        查询:    select [distinct]  * [列名1,列名2] from 表名 [where 条件]</p>
+<p>​              as关键字: 别名</p>
+<p>​               where条件后面:</p>
+<p>​        </p>
+<p>​                    关系运算符:  &gt; &gt;= &lt; &lt;= !=  &lt;&gt;</p>
+<p>​                        –判断某一列是否为空:  is null    is not null</p>
+<p>​                        in 在某范围内</p>
+<p>​                        between…and</p>
+<p>​                    逻辑运算符: and or not</p>
+<p>​                    模糊查询:  like    </p>
+<p>​                            _ : 代表单个字符</p>
+<p>​                            %: 代表的是多个字符</p>
+<p>​                    分组: group by </p>
+<p>​                    分组之后条件过滤:  having</p>
+<p>​                    聚合函数: sum()  ,avg() , count()  ,max(), min()</p>
+<p>​                    排序: order by  (asc 升序, desc 降序)</p>
+<p>​                            </p>
+<p>​                    </p>
+<p>​                    </p>
+<p>​    </p>
+<p>​        </p>
+<h3 id="SQL-会创建多表及多表的关系"><a href="#SQL-会创建多表及多表的关系" class="headerlink" title="SQL 会创建多表及多表的关系"></a>SQL 会创建多表及多表的关系</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h4><p>分类表和商品表之间是不是有关系? 如果有关系,在数据库中如何表示这种关系</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">category</span>(</span><br><span class="line">  cid <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  cname <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line">  cdesc <span class="built_in">varchar</span>(<span class="number">31</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'手机数码'</span>,<span class="string">'电子产品'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'鞋靴箱包'</span>,<span class="string">'江南皮鞋厂倾情打造'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'香烟酒水'</span>,<span class="string">'黄鹤楼,茅台,二锅头'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'酸奶饼干'</span>,<span class="string">'娃哈哈,蒙牛酸酸乳'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'馋嘴零食'</span>,<span class="string">'瓜子花生,八宝粥,辣条'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">category</span>;</span><br><span class="line"><span class="keyword">select</span> cname,cdesc <span class="keyword">from</span> <span class="keyword">category</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--所有商品</span></span><br><span class="line">1.商品ID</span><br><span class="line">2.商品名称</span><br><span class="line">3.商品的价格</span><br><span class="line">4.生产日期</span><br><span class="line">5.商品分类ID</span><br><span class="line"></span><br><span class="line">商品和商品分类 : 所属关系</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> product(</span><br><span class="line">	pid <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  	pname <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line">  	price <span class="keyword">double</span>,</span><br><span class="line">  	pdate <span class="built_in">timestamp</span>,</span><br><span class="line">  	cno <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'小米mix4'</span>,<span class="number">998</span>,<span class="literal">null</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'锤子'</span>,<span class="number">2888</span>,<span class="literal">null</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'阿迪王'</span>,<span class="number">99</span>,<span class="literal">null</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'老村长'</span>,<span class="number">88</span>,<span class="literal">null</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'劲酒'</span>,<span class="number">35</span>,<span class="literal">null</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'小熊饼干'</span>,<span class="number">1</span>,<span class="literal">null</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'卫龙辣条'</span>,<span class="number">1</span>,<span class="literal">null</span>,<span class="number">5</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'旺旺大饼'</span>,<span class="number">1</span>,<span class="literal">null</span>,<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">//插入数据会失败</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'充气的气球'</span>,<span class="number">1</span>,<span class="literal">null</span>,<span class="number">12</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="技术分析"><a href="#技术分析" class="headerlink" title="技术分析:"></a>技术分析:</h4><ul>
+<li><p>多表之间的关系如何来维护</p>
+<p>外键约束: foreign key</p>
+<ul>
+<li><p>给product中的这个cno 添加一个外键约束</p>
+<p>alter table product add foreign key(cno)  references  category(cid);</p>
+</li>
+<li><p>自己挖坑</p>
+</li>
+<li><p>从分类表中,删除分类为5信息,</p>
+<ul>
+<li>delete from category where cid =5;  //删除失败</li>
+<li>首先得去product表, 删除所有分类ID5  商品</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>建数据库原则:</p>
+<ul>
+<li>通常情况下,一个项目/应用建一个数据库</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>多表之间的建表原则</p>
+<ul>
+<li><p>一对多 : 商品和分类</p>
+<ul>
+<li><p>建表原则: 在多的一方添加一个外键,指向一的一方的主键</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>多对多: 老师和学生, 学生和课程</p>
+<p>建表原则: 建立一张中间表,将多对多的关系,拆分成一对多的关系,中间表至少要有两个外键,分别指向原来的那两张表</p>
+<p>​</p>
+</li>
+<li><p>一对一: 班级和班长, 公民和身份证, 国家和国旗</p>
+<ul>
+<li><p>建表原则:  </p>
+<ul>
+<li>将一对一的情况,当作是一对多情况处理,在任意一张表添加一个外键,并且这个外键要唯一,指向另外一张表</li>
+<li>直接将两张表合并成一张表</li>
+<li>将两张表的主键建立起连接,让两张表里面主键相等</li>
+</ul>
+</li>
+<li><p>实际用途: 用的不是很多.    (拆表操作  )</p>
+<ul>
+<li>相亲网站: <ul>
+<li>个人信息 : 姓名,性别,年龄,身高,体重,三围,兴趣爱好,(年收入,  特长,学历, 职业, 择偶目标,要求)</li>
+<li>拆表操作 : 将个人的常用信息和不常用信息,减少表的臃肿, </li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​</p>
+<ul>
+<li><p>网上商城表实例的分析:  用户购物流程</p>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li><p>用户表 (用户的ID,用户名,密码,手机)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span>(</span><br><span class="line">	uid <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  	username <span class="built_in">varchar</span>(<span class="number">31</span>),</span><br><span class="line">  	<span class="keyword">password</span> <span class="built_in">varchar</span>(<span class="number">31</span>),</span><br><span class="line">  	phone  <span class="built_in">varchar</span>(<span class="number">11</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span> <span class="keyword">values</span>(<span class="number">1</span>,<span class="string">'zhangsan'</span>,<span class="string">'123'</span>,<span class="string">'13811118888'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>订单表 (订单编号,总价,订单时间 ,地址,外键用户的ID)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> orders(</span><br><span class="line">	<span class="keyword">oid</span> <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  	<span class="keyword">sum</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    otime <span class="built_in">timestamp</span>,</span><br><span class="line">  	address <span class="built_in">varchar</span>(<span class="number">100</span>),</span><br><span class="line">  	uno <span class="built_in">int</span>,</span><br><span class="line">  	<span class="keyword">foreign</span> <span class="keyword">key</span>(uno) <span class="keyword">references</span> <span class="keyword">user</span>(uid)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">200</span>,<span class="literal">null</span>,<span class="string">'前台旁边小黑屋'</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders <span class="keyword">values</span>(<span class="number">2</span>,<span class="number">250</span>,<span class="literal">null</span>,<span class="string">'后台旁边小黑屋'</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>商品表 (商品ID, 商品名称,商品价格,外键cno)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> product(</span><br><span class="line">	pid <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  	pname <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line">  	price <span class="keyword">double</span>,</span><br><span class="line">  	cno <span class="built_in">int</span>,</span><br><span class="line">  	<span class="keyword">foreign</span> <span class="keyword">key</span>(cno) <span class="keyword">references</span> <span class="keyword">category</span>(cid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'小米mix4'</span>,<span class="number">998</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'锤子'</span>,<span class="number">2888</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'阿迪王'</span>,<span class="number">99</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'老村长'</span>,<span class="number">88</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'劲酒'</span>,<span class="number">35</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'小熊饼干'</span>,<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'卫龙辣条'</span>,<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> product <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'旺旺大饼'</span>,<span class="number">1</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li><p>订单项: 中间表(订单ID,商品ID,商品数量,订单项总价)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> orderitem(</span><br><span class="line">	ono <span class="built_in">int</span>,</span><br><span class="line">  	pno <span class="built_in">int</span>,</span><br><span class="line">  	<span class="keyword">foreign</span> <span class="keyword">key</span>(ono) <span class="keyword">references</span> orders(<span class="keyword">oid</span>),</span><br><span class="line">  	<span class="keyword">foreign</span> <span class="keyword">key</span>(pno) <span class="keyword">references</span> product(pid),</span><br><span class="line">  	ocount <span class="built_in">int</span>,</span><br><span class="line">  	subsum <span class="keyword">double</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">--给1号订单添加商品 200块钱的商品</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderitem <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">7</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderitem <span class="keyword">values</span>(<span class="number">1</span>,<span class="number">8</span>,<span class="number">101</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--给2号订单添加商品 250块钱的商品 ()</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderitem <span class="keyword">values</span>(<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">35</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderitem <span class="keyword">values</span>(<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">99</span>);</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+<ul>
+<li><p>商品分类表(分类ID,分类名称,分类描述)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">category</span>(</span><br><span class="line">	cid <span class="built_in">int</span> primary <span class="keyword">key</span> auto_increment,</span><br><span class="line">  	cname <span class="built_in">varchar</span>(<span class="number">15</span>),</span><br><span class="line">  	cdesc <span class="built_in">varchar</span>(<span class="number">100</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'手机数码'</span>,<span class="string">'电子产品'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'鞋靴箱包'</span>,<span class="string">'江南皮鞋厂倾情打造'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'香烟酒水'</span>,<span class="string">'黄鹤楼,茅台,二锅头'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'酸奶饼干'</span>,<span class="string">'娃哈哈,蒙牛酸酸乳'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">category</span> <span class="keyword">values</span>(<span class="literal">null</span>,<span class="string">'馋嘴零食'</span>,<span class="string">'瓜子花生,八宝粥,辣条'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多表之间的关系如何维护: 外键约束 :   foreign key</p>
+</li>
+<li>添加一个外键: alter table product add foreign key(cno)  references category(cid);<ul>
+<li>​        foreign key(cno) references category(cid)</li>
+<li>删除的时候, 先删除外键关联的所有数据,再才能删除分类的数据</li>
+</ul>
+</li>
+<li>建表原则:<ul>
+<li>一对多:<ul>
+<li>建表原则: 在多的一方增加一个外键,指向一的一方</li>
+</ul>
+</li>
+<li>多对多:<ul>
+<li>建表原则: 将多对多转成一对多的关系,创建一张中间表</li>
+</ul>
+</li>
+<li>一对一: 不常用, 拆表操作<ul>
+<li>建表原则:  将两张表合并成一张表<ul>
+<li>将两张表的主键建立起关系</li>
+<li>将一对一的关系当作一对多的关系去处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>主键约束: 默认就是不能为空, 唯一</p>
+<ul>
+<li>外键都是指向另外一张表的主键</li>
+<li>主键一张表只能有一个</li>
+</ul>
+<p>唯一约束:  列面的内容, 必须是唯一, 不能出现重复情况, 为空</p>
+<ul>
+<li>唯一约束不可以作为其它表的外键</li>
+<li>可以有多个唯一约束</li>
+</ul>
+<p>一对多 : 建表原则: 在多的一方添加一个外键,指向一的一方</p>
+<p>多对多: 建表原则:</p>
+<p>​        拆成一对多</p>
+<p>​        创建一张中间表, 至少要有两个外键, 指向原来的表</p>
+<p>一对一: 建表原则: 合并一张表, 将主键建立关系 , 将它当作一对多的情况来处理</p>
+<ul>
+<li><p>数据库客户端软件</p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="使用商城表完成对商品信息的多表查询"><a href="#使用商城表完成对商品信息的多表查询" class="headerlink" title="使用商城表完成对商品信息的多表查询"></a>使用商城表完成对商品信息的多表查询</h3><h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析:"></a>需求分析:</h4><p>在我们的商城案例中,我的订单中包含很多信息.打开我的订单需要去查询表</p>
+<h4 id="技术分析-1"><a href="#技术分析-1" class="headerlink" title="技术分析:"></a>技术分析:</h4><h4 id="多表查询-1"><a href="#多表查询-1" class="headerlink" title="多表查询"></a>多表查询</h4><ul>
+<li>交叉连接查询  笛卡尔积</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from product,category;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内连接查询</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- 隐式内连接</span><br><span class="line">select * from product p,category c where p.cno=c.cid;</span><br><span class="line"></span><br><span class="line">- 显式内连接</span><br><span class="line">select * from product p inner join category c on p.cno=c.cid;</span><br><span class="line"></span><br><span class="line">- 区别：</span><br><span class="line">隐式内连接：在查询结果的基础上去做的where条件过滤</span><br><span class="line">显式内连接：带着条件去查询结果，执行效率要高</span><br></pre></td></tr></table></figure>
+<ul>
+<li>左外连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from product p left outer join category c on p.cno=c.cid;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>右外连接  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from product p right outer join category c on p.cno=c.cid;</span><br></pre></td></tr></table></figure>
+<h4 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h4><ul>
+<li><p>每页数据数据3</p>
+</li>
+<li><p>起始索引从0 </p>
+</li>
+<li><p>第1页: 0</p>
+</li>
+<li><p>第2页: 3</p>
+<p>起始索引:  index 代表显示第几页 页数从1开始</p>
+<p>每页显示3条数据</p>
+<p>startIndex  = (index-1)*3</p>
+<p>​</p>
+</li>
+</ul>
+<p>第一个参数是索引 </p>
+<p>第二个参数显示的个数</p>
+<p>select * from product limit 0,3;</p>
+<p>select * from product limit 3,3;</p>
+<h4 id="子查询-了解的内容-非常重要"><a href="#子查询-了解的内容-非常重要" class="headerlink" title="子查询(了解的内容,非常重要)"></a>子查询(了解的内容,非常重要)</h4><p>查询出(商品名称,商品分类名称)信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 左连接</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> product p <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> <span class="keyword">category</span> c <span class="keyword">on</span> p. cno=c.cid;</span><br><span class="line"></span><br><span class="line">- 子查询</span><br><span class="line"><span class="keyword">select</span> pname, (<span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">category</span> <span class="keyword">where</span> p.cno=c.cid) <span class="keyword">as</span> 商品分类名称 <span class="keyword">from</span> product p;</span><br></pre></td></tr></table></figure>
+<p>  查询分类名称为手机数码的所有商品</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> product <span class="keyword">where</span> cno = (<span class="keyword">select</span> cid <span class="keyword">from</span> <span class="keyword">category</span> <span class="keyword">where</span> cname=<span class="string">'手机数码'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h4><ul>
+<li>按照商品分类的名称统计商品的个数:</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询1号订单的订单项信息和商品信息</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="多表查询练习数据"><a href="#多表查询练习数据" class="headerlink" title="多表查询练习数据"></a>多表查询练习数据</h4><ul>
+<li>员工信息表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--员工信息表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp(</span><br><span class="line">	empno <span class="built_in">INT</span>,</span><br><span class="line">	ename <span class="built_in">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">	job <span class="built_in">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">	mgr	<span class="built_in">INT</span>,</span><br><span class="line">	hiredate <span class="built_in">DATE</span>,</span><br><span class="line">	sal	<span class="built_in">DECIMAL</span>(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">	comm <span class="built_in">DECIMAL</span>(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">	deptno <span class="built_in">INT</span></span><br><span class="line">) ;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7369</span>,<span class="string">'SMITH'</span>,<span class="string">'CLERK'</span>,<span class="number">7902</span>,<span class="string">'1980-12-17'</span>,<span class="number">800</span>,<span class="literal">NULL</span>,<span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7499</span>,<span class="string">'ALLEN'</span>,<span class="string">'SALESMAN'</span>,<span class="number">7698</span>,<span class="string">'1981-02-20'</span>,<span class="number">1600</span>,<span class="number">300</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7521</span>,<span class="string">'WARD'</span>,<span class="string">'SALESMAN'</span>,<span class="number">7698</span>,<span class="string">'1981-02-22'</span>,<span class="number">1250</span>,<span class="number">500</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7566</span>,<span class="string">'JONES'</span>,<span class="string">'MANAGER'</span>,<span class="number">7839</span>,<span class="string">'1981-04-02'</span>,<span class="number">2975</span>,<span class="literal">NULL</span>,<span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7654</span>,<span class="string">'MARTIN'</span>,<span class="string">'SALESMAN'</span>,<span class="number">7698</span>,<span class="string">'1981-09-28'</span>,<span class="number">1250</span>,<span class="number">1400</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7698</span>,<span class="string">'BLAKE'</span>,<span class="string">'MANAGER'</span>,<span class="number">7839</span>,<span class="string">'1981-05-01'</span>,<span class="number">2850</span>,<span class="literal">NULL</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7782</span>,<span class="string">'CLARK'</span>,<span class="string">'MANAGER'</span>,<span class="number">7839</span>,<span class="string">'1981-06-09'</span>,<span class="number">2450</span>,<span class="literal">NULL</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7788</span>,<span class="string">'SCOTT'</span>,<span class="string">'ANALYST'</span>,<span class="number">7566</span>,<span class="string">'1987-04-19'</span>,<span class="number">3000</span>,<span class="literal">NULL</span>,<span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7839</span>,<span class="string">'KING'</span>,<span class="string">'PRESIDENT'</span>,<span class="literal">NULL</span>,<span class="string">'1981-11-17'</span>,<span class="number">5000</span>,<span class="literal">NULL</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7844</span>,<span class="string">'TURNER'</span>,<span class="string">'SALESMAN'</span>,<span class="number">7698</span>,<span class="string">'1981-09-08'</span>,<span class="number">1500</span>,<span class="number">0</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7876</span>,<span class="string">'ADAMS'</span>,<span class="string">'CLERK'</span>,<span class="number">7788</span>,<span class="string">'1987-05-23'</span>,<span class="number">1100</span>,<span class="literal">NULL</span>,<span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7900</span>,<span class="string">'JAMES'</span>,<span class="string">'CLERK'</span>,<span class="number">7698</span>,<span class="string">'1981-12-03'</span>,<span class="number">950</span>,<span class="literal">NULL</span>,<span class="number">30</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7902</span>,<span class="string">'FORD'</span>,<span class="string">'ANALYST'</span>,<span class="number">7566</span>,<span class="string">'1981-12-03'</span>,<span class="number">3000</span>,<span class="literal">NULL</span>,<span class="number">20</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7934</span>,<span class="string">'MILLER'</span>,<span class="string">'CLERK'</span>,<span class="number">7782</span>,<span class="string">'1982-01-23'</span>,<span class="number">1300</span>,<span class="literal">NULL</span>,<span class="number">10</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">values</span>(<span class="number">7981</span>,<span class="string">'MILLER'</span>,<span class="string">'CLERK'</span>,<span class="number">7788</span>,<span class="string">'1992-01-23'</span>,<span class="number">2600</span>,<span class="number">500</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>部门信息表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> dept(</span><br><span class="line">	deptno		<span class="built_in">INT</span>,</span><br><span class="line">	dname		<span class="built_in">varchar</span>(<span class="number">14</span>),</span><br><span class="line">	loc		<span class="built_in">varchar</span>(<span class="number">13</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept <span class="keyword">values</span>(<span class="number">10</span>, <span class="string">'ACCOUNTING'</span>, <span class="string">'NEW YORK'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept <span class="keyword">values</span>(<span class="number">20</span>, <span class="string">'RESEARCH'</span>, <span class="string">'DALLAS'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept <span class="keyword">values</span>(<span class="number">30</span>, <span class="string">'SALES'</span>, <span class="string">'CHICAGO'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> dept <span class="keyword">values</span>(<span class="number">40</span>, <span class="string">'OPERATIONS'</span>, <span class="string">'BOSTON'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>基本查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--所有员工的信息</span></span><br><span class="line"><span class="comment">--薪资大于等于1000并且小于等于2000的员工信息</span></span><br><span class="line"><span class="comment">--从员工表中查询出所有的部门编号</span></span><br><span class="line"><span class="comment">--查询出名字以A开头的员工的信息</span></span><br><span class="line"><span class="comment">--查询出名字第二个字母是L的员工信息</span></span><br><span class="line"><span class="comment">--查询出没有奖金的员工信息</span></span><br><span class="line"><span class="comment">--所有员工的平均工资</span></span><br><span class="line"><span class="comment">--所有员工的工资总和</span></span><br><span class="line"><span class="comment">--所有员工的数量</span></span><br><span class="line"><span class="comment">--最高工资</span></span><br><span class="line"><span class="comment">--最少工资</span></span><br><span class="line"><span class="comment">--最高工资的员工信息</span></span><br><span class="line"><span class="comment">--最低工资的员工信息</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>分组查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--每个部门的平均工资</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>子查询</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 单行子查询(&gt; &lt; &gt;= &lt;= = &lt;&gt;)</span></span><br><span class="line">	<span class="comment">-- 查询出高于10号部门的平均工资的员工信息</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">-- 多行子查询(in  not in any all)    &gt;any  &gt;all</span></span><br><span class="line">	<span class="comment">-- 查询出比10号部门任何员工薪资高的员工信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 多列子查询(实际使用较少)   in</span></span><br><span class="line">	<span class="comment">-- 和10号部门同名同工作的员工信息</span></span><br><span class="line"><span class="comment">-- Select接子查询</span></span><br><span class="line">	<span class="comment">-- 获取员工的名字和部门的名字</span></span><br><span class="line"><span class="comment">-- from后面接子查询</span></span><br><span class="line">	<span class="comment">-- 查询emp表中经理信息</span></span><br><span class="line"><span class="comment">-- where 接子查询</span></span><br><span class="line">	<span class="comment">-- 薪资高于10号部门平均工资的所有员工信息</span></span><br><span class="line"><span class="comment">-- having后面接子查询</span></span><br><span class="line">	<span class="comment">-- 有哪些部门的平均工资高于30号部门的平均工资</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 工资&gt;JONES工资</span></span><br><span class="line"><span class="comment">-- 查询与SCOTT同一个部门的员工</span></span><br><span class="line"><span class="comment">-- 工资高于30号部门所有人的员工信息</span></span><br><span class="line"><span class="comment">-- 查询工作和工资与MARTIN完全相同的员工信息</span></span><br><span class="line"><span class="comment">-- 有两个以上直接下属的员工信息</span></span><br><span class="line"><span class="comment">-- 查询员工编号为7788的员工名称,员工工资,部门名称,部门地址</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>SQL查询的综合案例</li>
+</ul>
+<ol>
+<li>查询出高于本部门平均工资的员工信息</li>
+</ol>
+<ol start="2">
+<li>列出达拉斯加工作的人中,比纽约平均工资高的人</li>
+<li>查询7369员工编号,姓名,经理编号和经理姓名</li>
+<li>查询出各个部门薪水最高的员工所有信息</li>
+</ol>
+<h4 id="练习题-1"><a href="#练习题-1" class="headerlink" title="练习题"></a>练习题</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">test</span>(</span><br><span class="line">  <span class="keyword">name</span> <span class="built_in">CHAR</span>(<span class="number">20</span>),</span><br><span class="line">  kecheng <span class="built_in">CHAR</span>(<span class="number">20</span>),</span><br><span class="line">  fenshu <span class="built_in">CHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">test</span> <span class="keyword">VALUES</span>(<span class="string">'张三'</span>,<span class="string">'语文'</span>,<span class="number">81</span>),</span><br><span class="line">(<span class="string">'张三'</span>,<span class="string">'数学'</span>,<span class="number">75</span>),</span><br><span class="line">(<span class="string">'李四'</span>,<span class="string">'语文'</span>,<span class="number">76</span>),</span><br><span class="line">(<span class="string">'李四'</span>,<span class="string">'数学'</span>,<span class="number">90</span>),</span><br><span class="line">(<span class="string">'王五'</span>,<span class="string">'语文'</span>,<span class="number">81</span>),</span><br><span class="line">(<span class="string">'王五'</span>,<span class="string">'数学'</span>,<span class="number">82</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">--请用一条Sql语句查处分数大于80的学生</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="yokaimeow 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="yokaimeow 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/jdbc/" rel="next" title="JDBC">
+                <i class="fa fa-chevron-left"></i> JDBC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/25/sql/" rel="prev" title="SQL基础语法">
+                SQL基础语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="yokaimeow">
+            
+              <p class="site-author-name" itemprop="name">yokaimeow</p>
+              <p class="site-description motion-element" itemprop="description">blog</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yokaimeow" title="GitHub &rarr; https://github.com/yokaimeow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yokaimeow@gmail.com" title="E-Mail &rarr; mailto:yokaimeow@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/6917102439" title="Weibo &rarr; https://weibo.com/u/6917102439" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yokaimeow" title="Twitter &rarr; https://twitter.com/yokaimeow" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cxthhhhh.com/" title="https://www.cxthhhhh.com/" rel="noopener" target="_blank">CXT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://docupa.cn/" title="https://docupa.cn/" rel="noopener" target="_blank">Docupa</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hongxuelin.com/" title="https://www.hongxuelin.com/" rel="noopener" target="_blank">Hongxuelin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://htroy.com/" title="https://htroy.com/" rel="noopener" target="_blank">Htroy</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.melodyss.com/" title="http://www.melodyss.com/" rel="noopener" target="_blank">Melody</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.saltedfish-qhc.top/" title="http://www.saltedfish-qhc.top/" rel="noopener" target="_blank">QHC</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cjbase.cn/" title="https://www.cjbase.cn/" rel="noopener" target="_blank">Sagit</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yanyuefan.github.io/" title="https://yanyuefan.github.io/" rel="noopener" target="_blank">Yanyuefan</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zhakul.top/" title="https://zhakul.top/" rel="noopener" target="_blank">Zhakul</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+		  
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多表查询"><span class="nav-number">1.</span> <span class="nav-text">多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">1.1.</span> <span class="nav-text">任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#完成对MYSQL数据库的多表查询及建表的操作"><span class="nav-number">1.1.1.</span> <span class="nav-text">完成对MYSQL数据库的多表查询及建表的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#掌握MYSQL中多表的创建及多表的查询"><span class="nav-number">1.2.1.</span> <span class="nav-text">掌握MYSQL中多表的创建及多表的查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#掌握MYSQL中的表关系分析并能正确建表"><span class="nav-number">1.2.2.</span> <span class="nav-text">掌握MYSQL中的表关系分析并能正确建表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-会创建多表及多表的关系"><span class="nav-number">1.3.</span> <span class="nav-text">SQL 会创建多表及多表的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.3.1.</span> <span class="nav-text">需求:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#技术分析"><span class="nav-number">1.3.2.</span> <span class="nav-text">技术分析:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用商城表完成对商品信息的多表查询"><span class="nav-number">1.4.</span> <span class="nav-text">使用商城表完成对商品信息的多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求分析"><span class="nav-number">1.4.1.</span> <span class="nav-text">需求分析:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#技术分析-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">技术分析:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多表查询-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">多表查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页查询"><span class="nav-number">1.4.4.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子查询-了解的内容-非常重要"><span class="nav-number">1.4.5.</span> <span class="nav-text">子查询(了解的内容,非常重要)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题"><span class="nav-number">1.4.6.</span> <span class="nav-text">练习题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多表查询练习数据"><span class="nav-number">1.4.7.</span> <span class="nav-text">多表查询练习数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习题-1"><span class="nav-number">1.4.8.</span> <span class="nav-text">练习题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yokaimeow</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.6.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.6.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
