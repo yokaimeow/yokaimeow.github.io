@@ -129,30 +129,30 @@
 
 
 
-  <meta name="description" content="安装Docker">
+  <meta name="description" content="安装Docker-ce">
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装Docker">
-<meta property="og:url" content="https://yokaimeow.com/2019/03/01/installdocker/index.html">
+<meta property="og:url" content="https://yokaimeow.com/2019/03/01/installdockerce/index.html">
 <meta property="og:site_name" content="yokaimeow&#39;s blog">
-<meta property="og:description" content="安装Docker">
+<meta property="og:description" content="安装Docker-ce">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/01.png?raw=true">
-<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/02.png?raw=true">
-<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/03.png?raw=true">
-<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/04.png?raw=true">
-<meta property="og:updated_time" content="2019-03-03T15:04:15.527Z">
+<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/01.png?raw=true">
+<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/02.png?raw=true">
+<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/03.png?raw=true">
+<meta property="og:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/04.png?raw=true">
+<meta property="og:updated_time" content="2019-03-12T11:33:25.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装Docker">
-<meta name="twitter:description" content="安装Docker">
-<meta name="twitter:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/01.png?raw=true">
+<meta name="twitter:description" content="安装Docker-ce">
+<meta name="twitter:image" content="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/01.png?raw=true">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yokaimeow.com/2019/03/01/installdocker/">
+  <link rel="canonical" href="https://yokaimeow.com/2019/03/01/installdockerce/">
 
 
 
@@ -404,7 +404,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yokaimeow.com/2019/03/01/installdocker/">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.com/2019/03/01/installdockerce/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yokaimeow">
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-03 23:04:15" itemprop="dateModified" datetime="2019-03-03T23:04:15+08:00">2019-03-03</time>
+                <time title="修改时间：2019-03-12 19:33:25" itemprop="dateModified" datetime="2019-03-12T19:33:25+08:00">2019-03-12</time>
               
             
           </span>
@@ -522,8 +522,8 @@
       
 
       
-        <h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a><center>安装Docker</center></h2><a id="more"></a>
-<h1 id="安装与使用Docker"><a href="#安装与使用Docker" class="headerlink" title="安装与使用Docker"></a>安装与使用Docker</h1><ul>
+        <h2 id="安装Docker-ce"><a href="#安装Docker-ce" class="headerlink" title="安装Docker-ce"></a><center>安装Docker-ce</center></h2><a id="more"></a>
+<h1 id="安装与使用Docker-ce"><a href="#安装与使用Docker-ce" class="headerlink" title="安装与使用Docker-ce"></a>安装与使用Docker-ce</h1><ul>
 <li>依赖的基础环境<ul>
 <li>64 bits CPU</li>
 <li>Linux Kernel 3.10+</li>
@@ -548,7 +548,7 @@
 <li>显示所有已启用的存储库</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/01.png?raw=true" alt="icon"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/01.png?raw=true" alt="icon"></p>
 <p>Tips：docker存在extras仓库中。</p>
 <hr>
 <ol start="2">
@@ -572,14 +572,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim docker-ce.repo</span><br></pre></td></tr></table></figure>
 <p>配置如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s@https://download.docker.com/@https://mirrors.tuna.tsinghua.edu.cn/docker-ce/@</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/02.png?raw=true" alt="icon"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/02.png?raw=true" alt="icon"></p>
 </li>
 </ol>
 <hr>
 <ol start="5">
 <li><p>再次查看仓库</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/03.png?raw=true" alt="icon"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/03.png?raw=true" alt="icon"></p>
 </li>
 </ol>
 <hr>
@@ -614,7 +614,7 @@
 <ol start="9">
 <li>查看docker版本</li>
 </ol>
-<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdocker/04.png?raw=true" alt="icon"></p>
+<p><img src="https://github.com/yokaimeow/yokaimeow.github.io/blob/master/img/installdockerce/04.png?raw=true" alt="icon"></p>
 <p>安装成功！！！</p>
 
       
@@ -977,7 +977,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Docker"><span class="nav-number">1.</span> <span class="nav-text">安装Docker</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#安装与使用Docker"><span class="nav-number"></span> <span class="nav-text">安装与使用Docker</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Docker-ce"><span class="nav-number">1.</span> <span class="nav-text">安装Docker-ce</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#安装与使用Docker-ce"><span class="nav-number"></span> <span class="nav-text">安装与使用Docker-ce</span></a></li></div>
             
 
           </div>
