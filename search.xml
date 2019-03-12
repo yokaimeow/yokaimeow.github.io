@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[安装Docker]]></title>
+    <title><![CDATA[安装Docker-ce]]></title>
     <url>%2F2019%2F03%2F01%2Finstalldockerce%2F</url>
     <content type="text"><![CDATA[安装Docker-ce 安装与使用Docker-ce 依赖的基础环境 64 bits CPU Linux Kernel 3.10+ Linux Kernel cgroups and namespaces CentOS 7 “Extras” repository Docker Daemon systemctl start docker.service Docker Client docker [OPTIONS] COMMAND [args…] 显示所有已启用的存储库 1yum repolist Tips：docker存在extras仓库中。 查看docker在这个仓库中的版本 清华大学开源软件镜像站-CnetOS7-extras下的包 Tips：通常不用这个安装 下载docker-ce的docker-ce.repo docker-ce.repo 1wget https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo 修改docker-ce.repo文件 Tips：通常情况下下载的源是download.docker.com，我们需要换成清华开源软件镜像的下载源。 docker-ce的列表 1vim docker-ce.repo 配置如下： 1:%s@https://download.docker.com/@https://mirrors.tuna.tsinghua.edu.cn/docker-ce/@ 再次查看仓库 1yum repolist 下载docker-ce 1yum install docker-ce Tips：注意是docker-ce不是docker，如果输入docker下载的是extras仓库里的。 配置docker-ce的配置文件 注册阿里云账号，专用加速器地址获得路径 https://cr.console.aliyun.com/#/accelerator 配置如下： 1mkdir /etc/docker 1vim /etc/docker/daemon.json 123&#123; &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]&#125; Tips：此处是docker cn的加速器地址。 启动docker-ce 1systemctl start docker.service 查看docker版本 安装成功！！！]]></content>
       <categories>
