@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Go Modules 项目构建]]></title>
+    <url>%2F2019%2F10%2F06%2Fgomod%2F</url>
+    <content type="text"><![CDATA[Go 项目构建 关于 Go Modules Golang的包管理 go modules随着golang 1.11的发布而和我们见面了，这是官方提倡的新的包管理，乃至项目管理机制，可以不再需要GOPATH的存在。 初始化项目1go mod init [module name] 这样就快速通过 go modules 构建一个 Go 项目了]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Golang</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Golang 安装]]></title>
     <url>%2F2019%2F10%2F06%2Fgolang-install%2F</url>
     <content type="text"><![CDATA[Golang 安装 官方下载地址 https://golang.org/dl/ 第三方下载地址 https://studygolang.com/dl]]></content>
