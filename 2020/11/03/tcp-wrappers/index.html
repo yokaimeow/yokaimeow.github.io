@@ -129,23 +129,25 @@
 
 
 
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yokaimeow&#39;s blog">
-<meta property="og:url" content="https://yokaimeow.com/archives/2019/index.html">
+  <meta name="description" content="TCP Wrappers (简单防火墙)TCP Wrappers 简介TCP_Wrappers 是一个工作在第四层(传输层)的安全工具，对有状态连接(TCP)的特定服务进行安全检测并实现访问控制，界定方式是凡是调用libwrap.so库文件的程序就可以受TCP_Wrappers的安全控制。它的主要功能就是控制谁可以访问，常见的程序有rpcbind、vsftpd、sshd、telnet。 判断方式">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP Wrappers (简单防火墙)">
+<meta property="og:url" content="https://yokaimeow.com/2020/11/03/tcp-wrappers/index.html">
 <meta property="og:site_name" content="yokaimeow&#39;s blog">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="TCP Wrappers (简单防火墙)TCP Wrappers 简介TCP_Wrappers 是一个工作在第四层(传输层)的安全工具，对有状态连接(TCP)的特定服务进行安全检测并实现访问控制，界定方式是凡是调用libwrap.so库文件的程序就可以受TCP_Wrappers的安全控制。它的主要功能就是控制谁可以访问，常见的程序有rpcbind、vsftpd、sshd、telnet。 判断方式">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-03T12:38:56.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yokaimeow&#39;s blog">
-<meta name="twitter:description" content="blog">
+<meta name="twitter:title" content="TCP Wrappers (简单防火墙)">
+<meta name="twitter:description" content="TCP Wrappers (简单防火墙)TCP Wrappers 简介TCP_Wrappers 是一个工作在第四层(传输层)的安全工具，对有状态连接(TCP)的特定服务进行安全检测并实现访问控制，界定方式是凡是调用libwrap.so库文件的程序就可以受TCP_Wrappers的安全控制。它的主要功能就是控制谁可以访问，常见的程序有rpcbind、vsftpd、sshd、telnet。 判断方式">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yokaimeow.com/archives/2019/">
+  <link rel="canonical" href="https://yokaimeow.com/2020/11/03/tcp-wrappers/">
 
 
 
@@ -155,7 +157,7 @@
   };
 </script>
 
-  <title>归档 | yokaimeow's blog</title>
+  <title>TCP Wrappers (简单防火墙) | yokaimeow's blog</title>
   
 
 
@@ -203,7 +205,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	
 	<a href="https://github.com/yokaimeow" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -304,7 +306,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -377,276 +379,269 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yokaimeow.com/2020/11/03/tcp-wrappers/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yokaimeow">
+      <meta itemprop="description" content="blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yokaimeow's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">TCP Wrappers (简单防火墙)
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-11-03 20:36:22 / 修改时间：20:38:56" itemprop="dateCreated datePublished" datetime="2020-11-03T20:36:22+08:00">2020-11-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 10 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/10/06/gomod/" itemprop="url">
+          
             
-              <span itemprop="name">Go Modules 项目构建</span>
-            
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-06T16:46:53+08:00" content="2019-10-06">
-          10-06
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/18/dockerwithnginx/" itemprop="url">
-            
-              <span itemprop="name">基于 Docker 搭建 Nginx</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T16:15:44+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/01/installdockerce/" itemprop="url">
-            
-              <span itemprop="name">安装Docker-ce</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-01T16:47:37+08:00" content="2019-03-01">
-          03-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <a id="more"></a>
+<h1 id="TCP-Wrappers-简单防火墙"><a href="#TCP-Wrappers-简单防火墙" class="headerlink" title="TCP Wrappers (简单防火墙)"></a>TCP Wrappers (简单防火墙)</h1><h2 id="TCP-Wrappers-简介"><a href="#TCP-Wrappers-简介" class="headerlink" title="TCP Wrappers 简介"></a>TCP Wrappers 简介</h2><p>TCP_Wrappers 是一个工作在第四层(传输层)的安全工具，对有状态连接(TCP)的特定服务进行安全检测并实现访问控制，界定方式是凡是调用libwrap.so库文件的程序就可以受TCP_Wrappers的安全控制。它的主要功能就是控制谁可以访问，常见的程序有rpcbind、vsftpd、sshd、telnet。</p>
+<p>判断方式：</p>
+<ol>
+<li>查看对应服务命令所在位置</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which sshd</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>查看指定命令执行时是否调用libwrap.so文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd /usr/sbin/sshd | grep libwrap.so</span><br></pre></td></tr></table></figure>
+<h2 id="TCP-Wrappers-工作原理"><a href="#TCP-Wrappers-工作原理" class="headerlink" title="TCP Wrappers 工作原理"></a>TCP Wrappers 工作原理</h2><p>以ssh为例，每当有ssh的连接请求时，先读取系统管理员所设置的访问控制文件，符合要求，则会把这次连接原封不动的转给ssh进程，由ssh完成后续工作；如果这次连接发起的ip不符合访问控制文件中的设置，则会中断连接请求，拒绝提供ssh服务。</p>
+<p>客户端请求 -&gt; TCP Wrappers -&gt; ip是否被写入/etc/hosts.allow</p>
+<ul>
+<li>(是)-&gt; 允许</li>
+<li>(否)-&gt; ip是否被写入/etc/hosts.deny<ul>
+<li>(是)-&gt;拒绝</li>
+<li>(否)-&gt;允许</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>优先查看hosts.allow，匹配即停止</li>
+<li>允许个别，拒绝所有：hosts.allow文件添加允许的策略，hosts.deny文件添加all</li>
+<li>拒绝个别，允许所有：hosts.allow文件为空，hosts.deny文件添加单个拒绝的策略</li>
+</ol>
+<h2 id="TCP-Wrappers-的使用"><a href="#TCP-Wrappers-的使用" class="headerlink" title="TCP Wrappers 的使用"></a>TCP Wrappers 的使用</h2><p>TCP_Wrappers的使用主要是依靠两个配置文件/etc/hosts.allow和/etc/hosts.deny，以此实现访问控制，默认情况下，/etc/hosts.allow和/etc/hosts.deny什么都没有添加，此时没有限制</p>
+<p><strong>配置文件编写规则</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service_list@host: client_list</span><br></pre></td></tr></table></figure>
+<p><strong>client_list</strong>：是程序(服务)的列表，可以是多个，多个时，使用,隔开<br><strong>@host</strong>：设置允许或者禁止他人从自己的哪个网口进入。这一项不写，就代表全部<br><strong>client_list</strong>：是访问者的地址，如果需要控制的用户较多，可以使用空格或,隔开</p>
+<p>格式如下：</p>
+<p>基于IP地址：192.168.88.1 192.168.88.</p>
+<p>基于主机名：<a href="http://www.who.com" target="_blank" rel="noopener">www.who.com</a> .who.com</p>
+<p>基于网络/掩码：192.168.0.0/255.255.255.0</p>
+<p>内置的ACL：ALL(所有主机)、LOCAL(本地主机)</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/02/http/" itemprop="url">
-            
-              <span itemprop="name">HTTP协议</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-02T17:09:28+08:00" content="2019-02-02">
-          02-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/01/22/backgroudmusic/" itemprop="url">
-            
-              <span itemprop="name">Welcome</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-22T12:20:23+08:00" content="2019-01-22">
-          01-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/01/16/hexo/" itemprop="url">
-            
-              <span itemprop="name">Github 搭建 Hexo 博客</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-16T17:37:11+08:00" content="2019-01-16">
-          01-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="yokaimeow 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="yokaimeow 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/06/gomod/" rel="next" title="Go Modules 项目构建">
+                <i class="fa fa-chevron-left"></i> Go Modules 项目构建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/03/ssh-lab/" rel="prev" title="SSH 实验">
+                SSH 实验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -667,8 +662,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -837,6 +841,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-Wrappers-简单防火墙"><span class="nav-number">1.</span> <span class="nav-text">TCP Wrappers (简单防火墙)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-Wrappers-简介"><span class="nav-number">1.1.</span> <span class="nav-text">TCP Wrappers 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-Wrappers-工作原理"><span class="nav-number">1.2.</span> <span class="nav-text">TCP Wrappers 工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-Wrappers-的使用"><span class="nav-number">1.3.</span> <span class="nav-text">TCP Wrappers 的使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -977,6 +998,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
